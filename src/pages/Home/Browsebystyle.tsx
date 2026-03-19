@@ -96,7 +96,6 @@ function StyleCard({ card, onClick, className = "" }: StyleCardProps) {
         className,
       ].join(" ")}
     >
-      {/* Image — full card */}
       {!imgErr ? (
         <img
           src={card.imageUrl}

@@ -79,7 +79,6 @@ const ReviewCard = ({ r }: { r: Review }) => {
   );
 };
 
-/* ═══════ MAIN COMPONENT ═══════ */
 interface Props {
   product: Product;
   reviews: Review[];

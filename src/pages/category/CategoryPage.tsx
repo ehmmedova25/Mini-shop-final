@@ -23,7 +23,6 @@ const CategoryPage = () => {
   const sortBy = useAppSelector((s) => s.products.sortBy);
   const { filtered, pageItems, totalPages, status, page } = useFilteredProducts();
 
-  /* Initial Load & Category Change */
   useEffect(() => {
     if (filters.selectedCategory) {
       dispatch(fetchByCategory(filters.selectedCategory));
@@ -32,7 +31,6 @@ const CategoryPage = () => {
     }
   }, [filters.selectedCategory, dispatch]);
 
-  /* Scroll to top on page change */
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
@@ -55,13 +53,11 @@ const CategoryPage = () => {
 
   return (
     <div className="max-w-[1240px] mx-auto px-6 py-6 md:py-10 mb-20">
-      {/* Breadcrumb Section */}
       <div className="mb-6 md:mb-8">
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: catLabel }]} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[295px_1fr] gap-8 items-start">
-        {/* Sidebar - Filter state goes directly to Redux */}
         <div className="hidden lg:block">
           <FilterSidebar
             filters={filters}
@@ -70,7 +66,6 @@ const CategoryPage = () => {
           />
         </div>
 
-        {/* Main Content Area */}
         <div className="w-full">
           <SortBar
             title={catLabel}
@@ -95,7 +90,6 @@ const CategoryPage = () => {
             </div>
           )}
 
-          {/* Pagination */}
           {status !== "loading" && filtered.length > 9 && (
             <div className="mt-12 border-t border-gray-100 pt-6">
               <Pagination
@@ -111,7 +105,6 @@ const CategoryPage = () => {
   );
 };
 
-/* ── Empty State Component ── */
 const EmptyState = ({ onReset }: { onReset: () => void }) => (
   <div className="flex flex-col items-center justify-center py-20 px-6 text-center bg-gray-50 rounded-[20px] border border-dashed border-gray-200 animate-fadeIn">
     <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6">
@@ -134,7 +127,6 @@ const EmptyState = ({ onReset }: { onReset: () => void }) => (
   </div>
 );
 
-/* ── Error State Component ── */
 const ErrorState = ({ onRetry }: { onRetry: () => void }) => (
   <div className="flex flex-col items-center justify-center py-20 px-6 text-center bg-red-50 rounded-[20px] border border-red-100 animate-fadeIn">
     <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">

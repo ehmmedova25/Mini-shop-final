@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-/* ── Icons ── */
+
 const TwitterIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -28,7 +28,7 @@ const EmailIcon = () => (
   </svg>
 );
 
-/* ── Data ── */
+
 const FOOTER_LINKS: Record<string, string[]> = {
   COMPANY:   ["About", "Features", "Works", "Career"],
   HELP:      ["Customer Support", "Delivery Details", "Terms & Conditions", "Privacy Policy"],
@@ -43,16 +43,13 @@ const SOCIALS = [
   { label: "Github",    icon: <GithubIcon />,    dark: false },
 ];
 
-/* ════════════════════════════════════════
-   Footer
-════════════════════════════════════════ */
+
 export default function Footer() {
   const [email, setEmail] = useState("");
 
   return (
     <footer className="bg-[#F0F0F0] font-sans">
 
-      {/* ── Newsletter banner ── */}
       <div className="max-w-[1200px] mx-auto px-6 pt-12">
         <div className="bg-gray-900 rounded-2xl px-8 py-9 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-8">
           <h2 className="text-white text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight uppercase leading-tight max-w-sm text-center sm:text-left">
@@ -60,7 +57,6 @@ export default function Footer() {
           </h2>
 
           <div className="flex flex-col gap-3 w-full sm:w-auto sm:min-w-[300px] sm:max-w-[380px]">
-            {/* Email input */}
             <div className="bg-white rounded-full flex items-center gap-2.5 px-5 py-3">
               <EmailIcon />
               <input
@@ -71,7 +67,6 @@ export default function Footer() {
                 className="flex-1 border-none outline-none text-sm text-gray-900 bg-transparent placeholder-gray-400"
               />
             </div>
-            {/* Subscribe button */}
             <button className="bg-white text-gray-900 rounded-full py-3.5 text-[15px] font-semibold hover:bg-gray-100 transition-colors duration-200 tracking-wide">
               Subscribe to Newsletter
             </button>
@@ -79,10 +74,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Main content ── */}
       <div className="max-w-[1200px] mx-auto px-6 py-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr] gap-10">
 
-        {/* Brand column — full width on mobile */}
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
           <div className="text-[22px] font-black text-gray-900 tracking-tight mb-4">
             SHOP.CO
@@ -112,7 +105,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Link columns */}
         {Object.entries(FOOTER_LINKS).map(([title, links]) => (
           <div key={title}>
             <h4 className="text-[13px] font-bold tracking-[2px] text-gray-900 uppercase mb-5">
@@ -134,14 +126,14 @@ export default function Footer() {
         ))}
       </div>
 
-      {/* ── Bottom bar ── */}
+    
       <div className="border-t border-gray-300">
         <div className="max-w-[1200px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 flex-wrap">
           <p className="text-[13px] text-gray-500 m-0">
             Shop.co © 2000-2023, All Rights Reserved
           </p>
 
-          {/* Payment badges */}
+         
           <div className="flex items-center gap-2 flex-wrap justify-center">
             <PayBadge>
               <svg width="38" height="14" viewBox="0 0 38 14">
@@ -189,7 +181,6 @@ export default function Footer() {
   );
 }
 
-/* ── Payment badge wrapper ── */
 function PayBadge({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-white border border-gray-200 rounded-md px-2 py-1 h-8 flex items-center justify-center">

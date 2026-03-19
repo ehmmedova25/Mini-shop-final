@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { getCategories } from "../api/productApi";
 import { type FilterState } from "../store/slices/productsSlice";
 
-/* ── Icons ── */
 const ChevRight = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M9 18l6-6-6-6"/></svg>;
 const ChevDown  = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M6 9l6 6 6-6"/></svg>;
 const ChevUp    = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 15l-6-6-6 6"/></svg>;
@@ -10,7 +9,6 @@ const FiltIco   = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="no
 const XIco      = () => <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>;
 const CheckIco   = () => <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>;
 
-/* ── Constants ── */
 export const COLORS = [
   { name: "Green",  hex: "#4CAF50" }, { name: "Red",    hex: "#F44336" },
   { name: "Yellow", hex: "#FFC107" }, { name: "Orange", hex: "#FF9800" },
@@ -21,7 +19,6 @@ export const COLORS = [
 export const SIZES  = ["XX-Small","X-Small","Small","Medium","Large","X-Large","XX-Large","3X-Large","4X-Large"];
 export const STYLES = ["Casual", "Formal", "Party", "Gym"];
 
-/* ── Helpers ── */
 const fmt = (s: string) =>
   s.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
@@ -33,16 +30,13 @@ const activeCount = (f: FilterState) =>
   (f.minRating > 0 ? 1 : 0) +
   (f.priceRange[0] > 0 || f.priceRange[1] < 1500 ? 1 : 0);
 
-/* ── Props ── */
 interface Props {
   filters: FilterState;
   onFilterChange: (f: FilterState) => void;
   onReset: () => void;
 }
 
-/* ════════════════════════════════════════
-    FilterSidebar
-════════════════════════════════════════ */
+
 export default function FilterSidebar({ filters, onFilterChange, onReset }: Props) {
   const [categories, setCategories] = useState<string[]>([]);
   const [open, setOpen] = useState({ price: true, rating: true, colors: true, size: true, style: true });
@@ -62,7 +56,6 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
   return (
     <aside className="border border-gray-200 rounded-2xl p-5 bg-white">
 
-      {/* ── Header ── */}
       <div className="flex justify-between items-center mb-3.5 border-b border-gray-100 pb-4">
         <div className="flex items-center gap-2">
           <span className="text-xl font-black text-black tracking-tight uppercase">Filters</span>
@@ -75,7 +68,6 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
         <FiltIco />
       </div>
 
-      {/* ── Active tags ── */}
       {count > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-5">
           {filters.selectedCategory && (
@@ -107,7 +99,7 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
         </div>
       )}
 
-      {/* ── Category ── */}
+      
       <div className="border-b border-gray-100 pb-2 mb-2">
         <p className="text-[11px] font-bold text-gray-400 tracking-wider uppercase mb-1.5">Category</p>
         <CategoryBtn active={!filters.selectedCategory} onClick={() => set({ selectedCategory: "" })} label="All Products" />
@@ -121,7 +113,7 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
         ))}
       </div>
 
-      {/* ── Price ── */}
+      
       <Section title="Price Range" open={open.price} onToggle={() => tog("price")}>
         <div className="py-2 pb-3">
           <DualRange
@@ -136,7 +128,7 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
         </div>
       </Section>
 
-      {/* ── Rating ── */}
+    
       <Section title="Min Rating" open={open.rating} onToggle={() => tog("rating")}>
         <div className="py-1.5 pb-3 flex flex-col gap-0.5">
           {[4, 3, 2, 1].map((r) => (
@@ -159,7 +151,7 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
         </div>
       </Section>
 
-      {/* ── Colors ── */}
+     
       <Section title="Color" open={open.colors} onToggle={() => tog("colors")}>
         <div className="flex flex-wrap gap-2.5 py-2.5 pb-4">
           {COLORS.map(({ name, hex }) => {
@@ -188,7 +180,7 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
         </div>
       </Section>
 
-      {/* ── Size ── */}
+    
       <Section title="Size" open={open.size} onToggle={() => tog("size")}>
         <div className="flex flex-wrap gap-1.5 py-2.5 pb-4">
           {SIZES.map((s) => {
@@ -211,7 +203,7 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
         </div>
       </Section>
 
-      {/* ── Dress Style ── */}
+    
       <Section title="Dress Style" open={open.style} onToggle={() => tog("style")}>
         <div className="flex flex-wrap gap-2 py-2.5 pb-4">
           {STYLES.map((s) => {
@@ -235,7 +227,6 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
         </div>
       </Section>
 
-      {/* ── Reset ── */}
       {count > 0 && (
         <button
           onClick={onReset}
@@ -248,9 +239,7 @@ export default function FilterSidebar({ filters, onFilterChange, onReset }: Prop
   );
 }
 
-/* ════════════════════════════════════════
-    Sub-components
-════════════════════════════════════════ */
+
 
 function Section({
   title, open, onToggle, children,

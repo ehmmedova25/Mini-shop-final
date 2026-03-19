@@ -27,7 +27,6 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
 
   return (
     <div className="flex justify-between items-center mt-10 pt-6 border-t border-gray-200">
-      {/* Previous */}
       <button
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
@@ -36,7 +35,6 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
         <ChevronLeft /> Previous
       </button>
 
-      {/* Page numbers */}
       <div className="flex items-center gap-1">
         {getPages().map((p, i) =>
           p === "..." ? (
@@ -60,7 +58,6 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
         )}
       </div>
 
-      {/* Next */}
       <button
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}

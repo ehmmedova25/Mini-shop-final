@@ -10,9 +10,8 @@ import ReviewsTab from "../../components/ReviewsTab";
 import FaqTab from "../../components/FaqTabs";
 import ColorPicker from "../../components/Colorpicker";
 import { addRecentlyViewed } from "../../components/RecentlyViewed";
-import ImageMagnifier from "../../components/ImageMagnifier"; // Zoom importu
+import ImageMagnifier from "../../components/ImageMagnifier"; 
 
-/* ── Stars ── */
 const Stars = ({ rating, size = 18 }: { rating: number; size?: number }) => (
   <div className="flex gap-0.5">
     {[1, 2, 3, 4, 5].map((s) => {
@@ -106,7 +105,6 @@ export default function ProductDetail() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start mb-16">
         
-        {/* Gallery Section */}
         <div className="flex flex-col-reverse md:flex-row gap-4">
           <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto no-scrollbar shrink-0">
             {images.slice(0, 4).map((img, i) => (
@@ -126,7 +124,6 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* Info Section */}
         <div className="flex flex-col">
           <h1 className="text-3xl md:text-5xl font-black text-black uppercase tracking-tighter leading-[1.1] mb-3">
             {product.title}

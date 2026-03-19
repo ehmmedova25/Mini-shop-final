@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { type Product } from "../api/productApi";
 
-/* ─── FAQ Item Component ─── */
 const FaqItem = ({ q, a }: { q: string; a: string }) => {
   const [open, setOpen] = useState(false);
 
@@ -45,7 +44,6 @@ const FaqItem = ({ q, a }: { q: string; a: string }) => {
   );
 };
 
-/* ═══════ MAIN COMPONENT ═══════ */
 interface Props {
   product: Product;
 }

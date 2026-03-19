@@ -16,17 +16,14 @@ export const useFilteredProducts = () => {
   const filtered = useMemo(() => {
     let list = [...all];
 
-    // Price
     list = list.filter(
       (p) => p.price >= filters.priceRange[0] && p.price <= filters.priceRange[1]
     );
 
-    // Rating
     if (filters.minRating > 0) {
       list = list.filter((p) => p.rating >= filters.minRating);
     }
 
-    // Search
     if (filters.searchQuery.trim()) {
       const q = filters.searchQuery.toLowerCase();
       list = list.filter(
@@ -37,7 +34,6 @@ export const useFilteredProducts = () => {
       );
     }
 
-    // Style
     if (filters.selectedStyles?.length > 0) {
       list = list.filter((p) => {
         const t = p.title.toLowerCase();
@@ -48,7 +44,6 @@ export const useFilteredProducts = () => {
       });
     }
 
-    // Sort
     switch (sortBy) {
       case "Price: Low to High":  list.sort((a, b) => a.price - b.price);   break;
       case "Price: High to Low":  list.sort((a, b) => b.price - a.price);   break;

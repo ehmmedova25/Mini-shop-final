@@ -23,7 +23,6 @@ export default function Navbar() {
   const mobileSearchRef = useRef<HTMLDivElement>(null);
   const timer           = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Debounced search
   useEffect(() => {
     if (timer.current) clearTimeout(timer.current);
     if (!query.trim()) { setResults([]); setShowDrop(false); return; }
@@ -70,7 +69,6 @@ export default function Navbar() {
 
   const clearSearch = () => { setQuery(""); setResults([]); setShowDrop(false); };
 
-  // Shared dropdown list
   const Dropdown = () => (
     <div className="p-1.5">
       {results.map((p) => (
@@ -97,10 +95,8 @@ export default function Navbar() {
     </div>
   );
 
-  // Shared search input
   const SearchInput = ({ autoFocus = false }: { autoFocus?: boolean }) => (
     <div className="flex items-center w-full bg-gray-100 rounded-full px-4 py-2.5 gap-2">
-      {/* Search icon */}
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth="1.8">
         <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
       </svg>
@@ -129,11 +125,9 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Navbar ── */}
       <nav className="w-full bg-white border-b border-gray-100 sticky top-0 z-[100]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 h-16 flex items-center gap-4 sm:gap-6">
 
-          {/* Hamburger – mobile only */}
           <button
             className="md:hidden p-1 hover:opacity-60 transition-opacity shrink-0 bg-transparent border-none cursor-pointer"
             onClick={() => setMobileOpen(true)}
@@ -144,7 +138,6 @@ export default function Navbar() {
             </svg>
           </button>
 
-          {/* Logo */}
           <a
             href="/"
             className="text-[22px] font-black text-gray-900 no-underline tracking-tight shrink-0"
@@ -153,7 +146,6 @@ export default function Navbar() {
             SHOP.CO
           </a>
 
-          {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-5 shrink-0">
             {NAV.map((l) => (
               <button
@@ -172,7 +164,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop search */}
           <div ref={searchRef} className="hidden md:flex flex-1 relative min-w-0">
             <SearchInput />
             {showDrop && results.length > 0 && (
@@ -182,10 +173,8 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Right icons */}
           <div className="flex items-center gap-1 shrink-0 ml-auto md:ml-0">
 
-            {/* Search toggle – mobile only */}
             <button
               className="md:hidden p-1.5 bg-transparent border-none cursor-pointer hover:opacity-60 transition-opacity"
               onClick={() => setMobileSearch((p) => !p)}
@@ -196,7 +185,6 @@ export default function Navbar() {
               </svg>
             </button>
 
-            {/* Cart */}
             <a href="/cart" className="no-underline">
               <button className="relative p-1.5 bg-transparent border-none cursor-pointer hover:opacity-60 transition-opacity" aria-label="Səbət">
                 <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -212,7 +200,6 @@ export default function Navbar() {
               </button>
             </a>
 
-            {/* User – desktop only */}
             <button
               className="hidden md:flex p-1.5 bg-transparent border-none cursor-pointer hover:opacity-60 transition-opacity"
               aria-label="Hesab"
@@ -224,7 +211,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile search bar – slides down */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             mobileSearch ? "max-h-24 opacity-100" : "max-h-0 opacity-0"
@@ -241,7 +227,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile backdrop */}
       {mobileOpen && (
         <div
           className="fixed inset-0 bg-black/30 z-[998] md:hidden"
@@ -249,13 +234,11 @@ export default function Navbar() {
         />
       )}
 
-      {/* Mobile drawer */}
       <div
         className={`fixed top-0 left-0 bottom-0 w-[280px] bg-white z-[999] flex flex-col md:hidden transition-transform duration-300 ease-in-out ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Drawer header */}
         <div className="flex justify-between items-center px-6 py-5 border-b border-gray-100">
           <span className="text-[20px] font-black text-gray-900" style={{ fontFamily: "'Integral CF',sans-serif" }}>
             SHOP.CO
@@ -270,7 +253,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Nav items */}
         <div className="flex flex-col px-2 py-3 flex-1 overflow-y-auto">
           {NAV.map((l) => (
             <button
@@ -288,7 +270,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Drawer footer – cart & account */}
         <div className="flex items-center gap-1 px-4 py-5 border-t border-gray-100">
           <a href="/cart" className="no-underline flex-1" onClick={() => setMobileOpen(false)}>
             <button className="relative flex items-center gap-2.5 w-full px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors bg-transparent border-none cursor-pointer">

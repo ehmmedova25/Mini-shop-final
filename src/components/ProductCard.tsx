@@ -78,7 +78,6 @@ const ProductCard = ({
       onClick={() => navigate(`/product/${id}`)}
       className="group bg-[#F2F0F1] rounded-2xl overflow-hidden cursor-pointer transition hover:-translate-y-1 hover:shadow-xl relative"
     >
-      {/* Image */}
       <div className="aspect-square bg-gray-200 overflow-hidden">
         <img
           src={
@@ -94,7 +93,6 @@ const ProductCard = ({
         />
       </div>
 
-      {/* Quick Add */}
       <button
         onClick={handleQuickAdd}
         className={`absolute bottom-3 left-3 right-3 py-2 rounded-full text-xs sm:text-sm font-bold transition-all
@@ -108,7 +106,6 @@ const ProductCard = ({
         {added ? "✓ Əlavə edildi" : "+ Səbətə əlavə et"}
       </button>
 
-      {/* Content */}
       <div className="p-3 sm:p-4">
         <h3 className="text-sm sm:text-[15px] font-bold text-gray-900 truncate">
           {title}

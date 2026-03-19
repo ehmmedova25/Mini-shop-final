@@ -26,7 +26,6 @@ export default function CartPage() {
   const totalItems = useAppSelector((s) => s.cart.items.reduce((sum, i) => sum + i.quantity, 0));
   const totalPrice = useTotalPrice();
 
-  /* ── Empty state ── */
   if (items.length === 0) {
     return (
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-6">
@@ -55,12 +54,10 @@ export default function CartPage() {
   return (
     <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 pb-20">
 
-      {/* Breadcrumb */}
       <div className="mb-6">
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Cart" }]} />
       </div>
 
-      {/* Header */}
       <div className="flex justify-between items-center mb-7">
         <h1 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight m-0">
           Your Cart{" "}
@@ -74,10 +71,8 @@ export default function CartPage() {
         </button>
       </div>
 
-      {/* Grid: items + summary */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 items-start">
 
-        {/* ── Cart items ── */}
         <div className="border border-gray-200 rounded-2xl px-4 sm:px-6 py-1">
           {items.map((item: CartItem) => {
             const key = `${item.id}-${item.selectedSize}-${item.selectedColor}`;
@@ -94,7 +89,6 @@ export default function CartPage() {
                   </div>
                 </a>
 
-                {/* Details */}
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2 mb-1">
                     <a href={`/product/${item.id}`} className="no-underline">
@@ -126,7 +120,6 @@ export default function CartPage() {
                     ${item.price.toFixed(2)} / each
                   </p>
 
-                  {/* Qty + Remove */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5 border border-gray-200 rounded-full px-2.5 py-1">
                       <button
@@ -169,7 +162,6 @@ export default function CartPage() {
           })}
         </div>
 
-        {/* ── Order summary ── */}
         <div className="border border-gray-200 rounded-2xl p-5 sm:p-6 lg:sticky lg:top-[88px]">
           <h2 className="text-lg font-black text-gray-900 m-0 mb-5">Order Summary</h2>
 
